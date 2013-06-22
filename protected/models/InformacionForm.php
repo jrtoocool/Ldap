@@ -7,9 +7,12 @@
  */
 class InformacionForm extends CFormModel
 {
-	public $name;
+	public $nombre;
+	public $apellido;
 	public $email;
+	public $teléfono;
 	public $subject;
+	public $titulo;
 	
 	/**
 	 * Declares the validation rules.
@@ -18,9 +21,11 @@ class InformacionForm extends CFormModel
 	{
 		return array(
 			// name, email, subject and body are required
-			array('name, email, subject, body', 'required'),
+			array('email, subject', 'required'),
 			// email has to be a valid email address
 			array('email', 'email'),
+			
+			array('teléfono', 'numerical'),
 			// verifyCode needs to be entered correctly
 			//array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
 		);

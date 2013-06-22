@@ -36,15 +36,33 @@ If you have business inquiries or other questions, please fill out the following
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name'); ?>
-		<?php echo $form->error($model,'name'); ?>
+		<?php echo $form->labelEx($model,'nombre'); ?>
+		<?php echo $form->textField($model,'nombre'); ?>
+		<?php echo $form->error($model,'nombre'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'apellido'); ?>
+		<?php echo $form->textField($model,'apellido'); ?>
+		<?php echo $form->error($model,'apellido'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
 		<?php echo $form->textField($model,'email'); ?>
 		<?php echo $form->error($model,'email'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'teléfono'); ?>
+		<?php echo $form->textField($model,'teléfono'); ?>
+		<?php echo $form->error($model,'teléfono'); ?>
+	</div>
+	
+		<div class="row">
+		<?php echo $form->labelEx($model,'titulo'); ?>
+		<?php echo $form->textField($model,'titulo'); ?>
+		<?php echo $form->error($model,'titulo'); ?>
 	</div>
 
 	<div class="row">

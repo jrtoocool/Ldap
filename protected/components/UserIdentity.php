@@ -31,7 +31,7 @@ class UserIdentity extends CUserIdentity
 		ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
 		
 		try{
-			$result=@ldap_search($ldapconn,"dc=unl,dc=edu,dc=ec",'cn='.$ldapuser,array('cn','sn', 'title'));
+			$result=@ldap_search($ldapconn,"dc=unl,dc=edu,dc=ec",'cn='.$ldapuser,array('cn','sn', 'title', 'telephoneNumber'));
 			$se = @ldap_get_entries($ldapconn,$result);
 		}catch (Exception $e){
 			echo $e.get_current_user();
@@ -48,11 +48,11 @@ class UserIdentity extends CUserIdentity
 			}
 		    // verify binding
 		    if ($ldapbind) {
-				Yii::app()->getSession()->add('ldap', $se[0]['cn']);
+				Yii::app()->getSession()->add('ldap', $se);
 			$this->errorCode=self::ERROR_NONE;
 			return !$this->errorCode;
 		    } else {
-		    	Yii::app()->getSession()->remove('uid');
+		    	Yii::app()->getSession()->remove('ldap');
 			$this->errorCode=self::ERROR_UNKNOWN_IDENTITY;
 			return !$this->errorCode;
 		    }

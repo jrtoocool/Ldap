@@ -2,23 +2,28 @@
 class InformacionController extends Controller{
 	
 	public function actionIndex(){
-				
-		$ldapconn = ldap_connect("localhost")
-		    or die("Could not connect to LDAP server.");
 		
 		// Modelo de formulario
 		$model=new InformacionForm;
 		
-		$uid = Yii::app()->getSession()->get('ldap');
+		$ldap = Yii::app()->getSession()->get('ldap');
+		
+		print_r($ldap);
+		
+		echo $model->apellido=$ldap[0]['sn'][0];
 
-		$model->name=$uid[0];
+		$model->nombre=$ldap[0]['cn'][0];
+		$model->titulo=$ldap[0]['title'][0];
+		$model->apellido=$ldap[0]['sn'][0];
+		$model->teléfono=$ldap[0]['telephonenumber'][0];
+		
 		
 		if(isset($_POST['InformacionForm']))
 		{
 			$model->attributes=$_POST['InformacionForm'];
 			if($model->validate())
 			{
-				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
+				$nombre='=?UTF-8?B?'.base64_encode($model->nombre).'?=';
 				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
 				$headers="From: $name <{$model->email}>\r\n".
 					"Reply-To: {$model->email}\r\n".

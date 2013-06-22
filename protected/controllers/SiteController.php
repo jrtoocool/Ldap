@@ -109,6 +109,6 @@ class SiteController extends Controller
 	{
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
-		Yii::app()->getSession()->remove('uid');
+		Yii::app()->getSession()->remove('ldap');
 	}
 }
