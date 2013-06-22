@@ -48,7 +48,7 @@ class UserIdentity extends CUserIdentity
 			}
 		    // verify binding
 		    if ($ldapbind) {
-		    	Yii::app()->getSession()->add('uid', 'pepe');
+				Yii::app()->getSession()->add('ldap', $se[0]['cn']);
 			$this->errorCode=self::ERROR_NONE;
 			return !$this->errorCode;
 		    } else {

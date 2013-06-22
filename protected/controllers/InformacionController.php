@@ -2,15 +2,16 @@
 class InformacionController extends Controller{
 	
 	public function actionIndex(){
-		
-		
+				
 		$ldapconn = ldap_connect("localhost")
 		    or die("Could not connect to LDAP server.");
 		
 		// Modelo de formulario
 		$model=new InformacionForm;
 		
-		$model->name=Yii::app()->getSession()->get('uid');
+		$uid = Yii::app()->getSession()->get('ldap');
+
+		$model->name=$uid[0];
 		
 		if(isset($_POST['InformacionForm']))
 		{
@@ -31,7 +32,5 @@ class InformacionController extends Controller{
 		}
 		$this->render('index',array('model'=>$model));
 	}
-	
-	
 	
 }
